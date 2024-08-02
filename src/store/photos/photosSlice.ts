@@ -29,7 +29,7 @@ interface IPhotos {
 // }
 
 interface IInitialState {
-  photos: IPhotos[];
+  photos: any;
   isLoading: boolean;
   error: string;
 }
