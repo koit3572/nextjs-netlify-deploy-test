@@ -3,7 +3,7 @@ import { use } from 'react';
 
 const getPhotos = async () => {
   try {
-    const url = "/api";
+    const url = "http://localhost:3000/api";
     const res = await fetch(url, {
       method: "GET",
       cache: "no-store",
@@ -17,7 +17,7 @@ const getPhotos = async () => {
 
 export default function Home() {
   const photos = use(getPhotos());
-  console.log(photos);
+  console.log("photos",photos);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
