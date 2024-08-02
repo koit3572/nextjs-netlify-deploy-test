@@ -87,8 +87,8 @@ export const getAllPostPaths = (
 };
 
 // .md파일 JavaScript 데이터로 변환
-export const getPostData = async (postPath: string) => {
-  const fullPostPath = getFullPath(postPath.replace("api/post", ""));
+export const getPostData = (postPath: string) => {
+  const fullPostPath = getFullPath(postPath.replace("/api/post", ""));
   const fileContents = fs.readFileSync(fullPostPath, "utf-8");
   const matterData = matter(fileContents);
   return matterData;
