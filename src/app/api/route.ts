@@ -36,17 +36,18 @@ export const GET = async () => {
   const postPaths = getAllPostPaths()!;
   const posts = postPaths!.reduce(async (acc, postPath) => {
     const formatPath = postPath.join("/");
-    const postData = await getPostData(formatPath);
+    // const postData = await getPostData(formatPath);
     return (acc = {
       ...acc,
       [formatPath]: {
-        title: postData.data.title,
-        writer: "koit",
-        createdAt: postData.data.createdAt,
-        updatedAt: postData.data.updatedAt,
-        discription: postData.data.discription,
-        tags: postData.data.tags,
-        isFavorite: postData.data.isFavorite,
+        title:"안녕하세요"
+        // title: postData.data.title,
+        // writer: "koit",
+        // createdAt: postData.data.createdAt,
+        // updatedAt: postData.data.updatedAt,
+        // discription: postData.data.discription,
+        // tags: postData.data.tags,
+        // isFavorite: postData.data.isFavorite,
       } as PostData,
     });
   }, {});
