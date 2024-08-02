@@ -34,7 +34,7 @@ export const getRootDirNames = async (dirPath: string = rootPath) => {
 };
 
 // post의 폴더와 파일의 모든 구조를 가져오기
-export const getPostFolderStructure = (dirpath: string = rootPath) => {
+export const getPostFolderStructure = async (dirpath: string = rootPath) => {
   const fileNames = fs.readdirSync(dirpath);
   const postFolderStructure: IGetPostFolderStructure = fileNames.reduce(
     (acc, fileName) => {
@@ -94,7 +94,7 @@ export const getAllPostPaths = async (
 };
 
 // .md파일 JavaScript 데이터로 변환
-export const getPostData = (postPath: string) => {
+export const getPostData = async (postPath: string) => {
   const fullPostPath = getFullPath(postPath.replace("/api/post", ""));
   const fileContents = fs.readFileSync(fullPostPath, "utf-8");
   const matterData = matter(fileContents);
