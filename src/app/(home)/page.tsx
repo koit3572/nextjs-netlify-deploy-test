@@ -31,7 +31,5 @@ export default function Home() {
   //   console.log("photos", photos);
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // },[isLoading])
-  return (
-   <div>안녕하세요</div>
-  )
+  return <div>{process.env.NEXT_PUBLIC_BACKEND_PROXY}</div>;
 }
