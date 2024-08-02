@@ -57,7 +57,7 @@ export const GET = async () => {
     };
     return NextResponse.json(postData);
   } catch (error) {
-    console.error(error)
+    console.log("error!@#!@#!",error)
     return NextResponse.error()
   }
 
