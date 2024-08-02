@@ -60,26 +60,33 @@ export const getPostFolderStructure = (dirpath: string = rootPath) => {
 };
 
 // .md확장자를 가진 파일의 경로(string)를 배열로 묶어, 배열로 감싸 반환
-export const getAllPostPaths = (
+export const getAllPostPaths = async (
   currentPath: string = rootPath,
   paths: string[] = []
 ) => {
   try {
     const formatPath = currentPath.replace(/^.*src\\post\\/, "");
     const dirNameList: string[] = getRootDirNames(formatPath)!;
-    const result: string[][] = dirNameList.reduce((acc, dirName) => {
+    const result: string[][] = await dirNameList.reduce(async (acc, dirName) => {
       const fullPath = path.join(currentPath, dirName);
       if (fs.statSync(fullPath).isDirectory()) {
-        return (acc = [
-          ...acc,
-          ...getAllPostPaths(fullPath, [...paths, dirName])!,
-        ]);
+        return (acc.then(async () => {
+          return [
+            ...await (acc),
+            ...((await getAllPostPaths(fullPath, [
+              ...paths,
+              dirName,
+            ])!) as string[][]),
+          ];
+        }) );
       } else if (dirName !== "list.md" && dirName.lastIndexOf(".md") !== -1) {
-        return (acc = [...acc, [...paths, dirName]]);
+        return (acc.then(async () => {
+          return [...(await acc), [...paths, dirName]];
+        }));
       } else {
         return acc;
       }
-    }, [] as string[][]);
+    }, Promise.resolve([] as string[][]));
     return result;
   } catch (error) {
     console.log(error);

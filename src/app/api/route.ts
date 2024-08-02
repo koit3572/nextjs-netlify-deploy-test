@@ -32,11 +32,11 @@ export interface IMainSideBarData {
   [dirName: string]: string[];
 }
 export const GET = async () => {
-  const postFolderStructure = getPostFolderStructure();
-  const postPaths = getAllPostPaths()!;
-  const posts = postPaths!.reduce((acc, postPath,i) => {
-    return acc = { ...acc, [i]: {title:"안녕하세요"} }
-  }, {});
+  // const postFolderStructure = getPostFolderStructure();
+  const postPaths = await getAllPostPaths()!;
+  const posts = await (postPaths as string[][]).reduce(async(acc, postPath,i) => {
+    return (acc = { ...acc, [i]: { title: postPath } });
+  }, Promise.resolve({}));
   return NextResponse.json(posts);
 
 
