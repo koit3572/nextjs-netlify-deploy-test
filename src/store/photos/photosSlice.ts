@@ -1,36 +1,68 @@
 import { createAsyncThunk, createSlice, PayloadAction } from "@reduxjs/toolkit";
 
-interface IPhotos {
-  albumId: number;
-  id: number;
+// interface IPhotos {
+//   albumId: number;
+//   id: number;
+//   title: string;
+//   url: string;
+//   thumbnailUrl: string;
+// }
+interface PostData {
   title: string;
-  url: string;
-  thumbnailUrl: string;
+  discription: string;
+  writer: string;
+  createdAt: string;
+  updatedAt: string;
+  tags: string[];
+  content?: string;
+  isFavorite: boolean;
+}
+interface IMainSideBarData {
+  [dirName: string]: string[];
+}
+interface IPostData {
+  postFolderStructure: IMainSideBarData;
+  posts: {
+    [postPath: string]: PostData;
+  };
 }
 interface IInitialState {
-  photos: IPhotos[];
+  photos: IPostData;
   isLoading: boolean;
   error: string;
 }
 const initialState: IInitialState = {
-  photos: [],
+  photos: {} as IPostData,
   isLoading: true,
   error: "",
 };
 export const fetchPhotos = createAsyncThunk(
   "photos/fetchPhotos",
-  async () => {
+  async (_, thunkAPI) => {
     try {
-      const url = "api";
-      const res = await fetch(url, {
+      const res = await fetch("/api", {
         method: "GET",
         cache: "no-store",
       });
-      const photos = await res.json();
-      return photos;
+      if (!res) {
+        throw new Error("error response is empty");
+      }
+      const postData = await res.json();
+      return postData;
     } catch (error) {
-      console.error(error);
+      return thunkAPI.rejectWithValue("Error loading fetchPost");
     }
+    // try {
+    //   const url = "api";
+    //   const res = await fetch(url, {
+    //     method: "GET",
+    //     cache: "no-store",
+    //   });
+    //   const photos = await res.json();
+    //   return photos;
+    // } catch (error) {
+    //   console.error(error);
+    // }
   }
 )
 
@@ -45,7 +77,7 @@ const photosSlice = createSlice({
       })
       .addCase(
         fetchPhotos.fulfilled,
-        (state, action: PayloadAction<IPhotos[]>) => {
+        (state, action) => {
           state.isLoading = false;
           state.photos = action.payload;
         }

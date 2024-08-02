@@ -20,14 +20,17 @@ import { useEffect } from 'react';
 
 export default function Home() {
   const dispatch = useAppDispatch();
-  const { photos } = useAppSelector(state => state.photosSlice)
+  const { photos,isLoading } = useAppSelector(state => state.photosSlice)
   useEffect(() => {
-    if (photos.length === 0) {
+    if (Object.keys(photos).length === 0) {
       dispatch(fetchPhotos())
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
+  useEffect(() => {
     console.log("photos", photos);
   // eslint-disable-next-line react-hooks/exhaustive-deps
-  },[])
+  },[isLoading])
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
