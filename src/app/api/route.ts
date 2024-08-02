@@ -35,7 +35,6 @@ export const GET = async () => {
   try {
     // const postFolderStructure = getPostFolderStructure();
     const postPaths = await getAllPostPaths()!;
-    const 
     const arr = new Array(50);
     const posts = await(arr).reduce(async (acc, postPath, i) => {
       return acc;
