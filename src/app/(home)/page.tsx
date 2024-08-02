@@ -22,7 +22,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const { photos,isLoading } = useAppSelector(state => state.photosSlice)
   useEffect(() => {
-    if (!photos) {
+    if (photos.length === 0) {
       dispatch(fetchPhotos());
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
