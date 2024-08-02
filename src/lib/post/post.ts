@@ -34,7 +34,7 @@ export const getRootDirNames = (dirPath: string = rootPath) => {
 };
 
 // post의 폴더와 파일의 모든 구조를 가져오기
-export const getPostFolderStructure = async (dirpath: string = rootPath) => {
+export const getPostFolderStructure = (dirpath: string = rootPath) => {
   const fileNames = fs.readdirSync(dirpath);
   const postFolderStructure: IGetPostFolderStructure = fileNames.reduce(
     (acc, fileName) => {

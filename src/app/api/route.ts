@@ -32,7 +32,7 @@ export interface IMainSideBarData {
   [dirName: string]: string[];
 }
 export const GET = async () => {
-  const postFolderStructure = await getPostFolderStructure();
+  const postFolderStructure = getPostFolderStructure();
   return NextResponse.json(postFolderStructure);
 
 
