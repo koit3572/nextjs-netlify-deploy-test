@@ -61,32 +61,33 @@ export const getPostFolderStructure = (dirpath: string = rootPath) => {
 
 // .md확장자를 가진 파일의 경로(string)를 배열로 묶어, 배열로 감싸 반환
 export const getAllPostPaths = async (
-  currentPath: string = rootPath,
-  paths: string[] = []
+  // currentPath: string = rootPath,
+  // paths: string[] = []
 ) => {
   try {
-    const formatPath = currentPath.replace(/^.*src\\post\\/, "");
-    const dirNameList: string[] = getRootDirNames(formatPath)!;
-    const result: string[][] = await dirNameList.reduce(async (acc, dirName) => {
-      const fullPath = path.join(currentPath, dirName);
-      if (fs.statSync(fullPath).isDirectory()) {
-        return (acc.then(async () => {
-          return [
-            ...await (acc),
-            ...((await getAllPostPaths(fullPath, [
-              ...paths,
-              dirName,
-            ])!) as string[][]),
-          ];
-        }) );
-      } else if (dirName !== "list.md" && dirName.lastIndexOf(".md") !== -1) {
-        return (acc.then(async () => {
-          return [...(await acc), [...paths, dirName]];
-        }));
-      } else {
-        return acc;
-      }
-    }, Promise.resolve([] as string[][]));
+    // const formatPath = currentPath.replace(/^.*src\\post\\/, "");
+    // const dirNameList: string[] = getRootDirNames(formatPath)!;
+    // const result: string[][] = await dirNameList.reduce(async (acc, dirName) => {
+    //   const fullPath = path.join(currentPath, dirName);
+    //   if (fs.statSync(fullPath).isDirectory()) {
+    //     return (acc.then(async () => {
+    //       return [
+    //         ...await (acc),
+    //         ...((await getAllPostPaths(fullPath, [
+    //           ...paths,
+    //           dirName,
+    //         ])!) as string[][]),
+    //       ];
+    //     }) );
+    //   } else if (dirName !== "list.md" && dirName.lastIndexOf(".md") !== -1) {
+    //     return (acc.then(async () => {
+    //       return [...(await acc), [...paths, dirName]];
+    //     }));
+    //   } else {
+    //     return acc;
+    //   }
+    // }, Promise.resolve([] as string[][]));
+    const result = new Array(50)
     return result;
   } catch (error) {
     console.log(error);
