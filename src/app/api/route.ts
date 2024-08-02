@@ -35,17 +35,16 @@ export const GET = async () => {
   try {
     // const postFolderStructure = getPostFolderStructure();
     const postPaths = await getAllPostPaths()!;
+    const 
     const arr = new Array(50);
-    const posts = await(postPaths as string[][]).reduce(
-      async (acc, postPath, i) => {
-        return acc;
-      },
-      Promise.resolve({ title: "안녕하세요" })
-    );
+    const posts = await(arr).reduce(async (acc, postPath, i) => {
+      return acc;
+    }, Promise.resolve({ title: "안녕하세요" }));
 
     return NextResponse.json(posts);
   } catch (error) {
     console.error(error)
+    return NextResponse.error()
   }
 
   // const postFolderStructure = await getPostFolderStructure();
