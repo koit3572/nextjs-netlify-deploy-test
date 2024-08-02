@@ -1,23 +1,33 @@
+'use client'
+import { useAppDispatch, useAppSelector } from '@/hooks/redux';
+import { fetchPhotos } from '@/store/photos/photosSlice';
 import Image from 'next/image'
-import { use } from 'react';
+import { useEffect } from 'react';
 
-const getPhotos = async () => {
-  try {
-    const url = "http://localhost:3000/api";
-    const res = await fetch(url, {
-      method: "GET",
-      cache: "no-store",
-    });
-    const photos = await res.json()
-    return photos
-  } catch (error) {
-    console.error(error)
-  }
-}
+// const getPhotos = async () => {
+//   try {
+//     const url = "http://localhost:3000/api";
+//     const res = await fetch(url, {
+//       method: "GET",
+//       cache: "no-store",
+//     });
+//     const photos = await res.json()
+//     return photos
+//   } catch (error) {
+//     console.error(error)
+//   }
+// }
 
 export default function Home() {
-  const photos = use(getPhotos());
-  console.log("photos",photos);
+  const dispatch = useAppDispatch();
+  const { photos } = useAppSelector(state => state.photosSlice)
+  useEffect(() => {
+    if (photos.length === 0) {
+      dispatch(fetchPhotos())
+    }
+    console.log("photos", photos);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  },[])
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
