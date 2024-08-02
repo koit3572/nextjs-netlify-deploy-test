@@ -35,8 +35,8 @@ export const GET = async () => {
   // const postFolderStructure = getPostFolderStructure();
   const postPaths = await getAllPostPaths()!;
   const posts = await (postPaths as string[][]).reduce(async(acc, postPath,i) => {
-    return (acc = { ...acc, [i]: { title: postPath } });
-  }, Promise.resolve({}));
+    return (acc);
+  }, Promise.resolve({title:"안녕하세요"}));
   return NextResponse.json(posts);
 
 
