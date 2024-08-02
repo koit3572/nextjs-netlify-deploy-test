@@ -32,6 +32,8 @@ export interface IMainSideBarData {
   [dirName: string]: string[];
 }
 export const GET = async () => {
+  // const postFolderStructure = getPostFolderStructure();
+  const postPaths = await getAllPostPaths()!;
   const arr = new Array(50)
   const posts = await arr.reduce(async (acc) => {
     return acc;
