@@ -1,6 +1,22 @@
 import Image from 'next/image'
 
+export const getPhotos = async () => {
+  try {
+    const url = "https://jsonplaceholder.typicode.com/photos";
+    const res = await fetch(url, {
+      method: "GET",
+      cache: "no-store",
+    });
+    const photos = await res.json()
+    return photos
+  } catch (error) {
+    console.error(error)
+  }
+}
+
 export default function Home() {
+  const photos = use(getPhotos());
+  console.log(photos);
   return (
     <main className="flex min-h-screen flex-col items-center justify-between p-24">
       <div className="z-10 max-w-5xl w-full items-center justify-between font-mono text-sm lg:flex">
