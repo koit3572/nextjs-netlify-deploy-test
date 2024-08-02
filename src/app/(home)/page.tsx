@@ -1,7 +1,7 @@
 import Image from 'next/image'
 import { use } from 'react';
 
-export const getPhotos = async () => {
+const getPhotos = async () => {
   try {
     const url = "https://jsonplaceholder.typicode.com/photos";
     const res = await fetch(url, {
