@@ -36,7 +36,7 @@ export const GET = async () => {
     // const postFolderStructure = getPostFolderStructure();
     const postPaths = await getAllPostPaths()!;
     const arr = new Array(50);
-    const posts = await(postPaths as []).reduce(
+    const posts = await(postPaths as string[][]).reduce(
       async (acc, postPath, i) => {
         return acc;
       },
@@ -44,7 +44,6 @@ export const GET = async () => {
     );
 
     return NextResponse.json(posts);
-
   } catch (error) {
     console.error(error)
   }
