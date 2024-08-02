@@ -21,7 +21,7 @@ export const fetchPhotos = createAsyncThunk(
   "photos/fetchPhotos",
   async () => {
     try {
-      const url = "http://localhost:3000/api";
+      const url = "api";
       const res = await fetch(url, {
         method: "GET",
         cache: "no-store",
