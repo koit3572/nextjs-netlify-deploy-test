@@ -19,14 +19,14 @@ import { useEffect } from 'react';
 // }
 
 export default function Home() {
-  // const dispatch = useAppDispatch();
-  // const { photos,isLoading } = useAppSelector(state => state.photosSlice)
-  // useEffect(() => {
-  //   if (Object.keys(photos).length === 0) {
-  //     dispatch(fetchPhotos())
-  //   }
-  // // eslint-disable-next-line react-hooks/exhaustive-deps
-  // }, [])
+  const dispatch = useAppDispatch();
+  const { photos,isLoading } = useAppSelector(state => state.photosSlice)
+  useEffect(() => {
+    if (Object.keys(photos).length === 0) {
+      dispatch(fetchPhotos())
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [])
   // useEffect(() => {
   //   console.log("photos", photos);
   // // eslint-disable-next-line react-hooks/exhaustive-deps

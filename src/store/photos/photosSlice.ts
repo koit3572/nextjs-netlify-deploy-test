@@ -41,30 +41,18 @@ const initialState: IInitialState = {
 export const fetchPhotos = createAsyncThunk(
   "photos/fetchPhotos",
   async (_, thunkAPI) => {
-    // try {
-    //   const res = await fetch("/api", {
-    //     method: "GET",
-    //     cache: "no-store",
-    //   });
-    //   if (!res) {
-    //     throw new Error("error response is empty");
-    //   }
-    //   const postData = await res.json();
-    //   return postData;
-    // } catch (error) {
-    //   return thunkAPI.rejectWithValue("Error loading fetchPost");
-    // }
-
     try {
-      const url = "api";
-      const res = await fetch(url, {
+      const res = await fetch("/api", {
         method: "GET",
         cache: "no-store",
       });
-      const photos = await res.json();
-      return photos;
+      if (!res) {
+        throw new Error("error response is empty");
+      }
+      const postData = await res.json();
+      return postData;
     } catch (error) {
-      console.error(error);
+      return thunkAPI.rejectWithValue("Error loading fetchPost");
     }
   }
 )
