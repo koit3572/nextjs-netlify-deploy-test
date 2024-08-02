@@ -3,7 +3,7 @@ import { use } from 'react';
 
 const getPhotos = async () => {
   try {
-    const url = "https://jsonplaceholder.typicode.com/photos";
+    const url = "/api";
     const res = await fetch(url, {
       method: "GET",
       cache: "no-store",
