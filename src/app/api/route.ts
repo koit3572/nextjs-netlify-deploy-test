@@ -32,14 +32,22 @@ export interface IMainSideBarData {
   [dirName: string]: string[];
 }
 export const GET = async () => {
-  // const postFolderStructure = getPostFolderStructure();
-  const postPaths = await getAllPostPaths()!;
-  const arr = new Array(50)
-  const posts = await (postPaths as string[][]).reduce(async(acc, postPath,i) => {
-    return (acc);
-  }, Promise.resolve({title:"안녕하세요"}));
-  return NextResponse.json(posts);
+  try {
+    // const postFolderStructure = getPostFolderStructure();
+    const postPaths = await getAllPostPaths()!;
+    const arr = new Array(50);
+    const posts = await(postPaths as string[][]).reduce(
+      async (acc, postPath, i) => {
+        return acc;
+      },
+      Promise.resolve({ title: "안녕하세요" })
+    );
 
+    return NextResponse.json(posts);
+    
+  } catch (error) {
+    console.error(error)
+  }
 
   // const postFolderStructure = await getPostFolderStructure();
   // const postPaths = getAllPostPaths()!;
