@@ -34,22 +34,8 @@ export interface IMainSideBarData {
 export const GET = async () => {
   const postFolderStructure = getPostFolderStructure();
   const postPaths = getAllPostPaths()!;
-  const posts = postPaths!.reduce(async (acc, postPath) => {
-    const formatPath = postPath.join("/");
-    // const postData = await getPostData(formatPath);
-    return (acc = {
-      ...acc,
-      [formatPath]: {
-        title:"안녕하세요"
-        // title: postData.data.title,
-        // writer: "koit",
-        // createdAt: postData.data.createdAt,
-        // updatedAt: postData.data.updatedAt,
-        // discription: postData.data.discription,
-        // tags: postData.data.tags,
-        // isFavorite: postData.data.isFavorite,
-      } as PostData,
-    });
+  const posts = postPaths!.reduce((acc, postPath,i) => {
+    return acc = { ...acc, [i]: {title:"안녕하세요"} }
   }, {});
   return NextResponse.json(posts);
 
