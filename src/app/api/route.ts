@@ -50,12 +50,12 @@ export const GET = async () => {
           isFavorite: postData.data.isFavorite,
         } as PostData,
       });
-    }, {});
+    }, Promise.resolve({}));
     const postData = {
       postFolderStructure: postFolderStructure,
       posts: posts,
     };
-    return NextResponse.json(posts);
+    return NextResponse.json(postData);
   } catch (error) {
     console.error(error)
     return NextResponse.error()
