@@ -34,7 +34,7 @@ export interface IMainSideBarData {
 export const GET = async () => {
   const postFolderStructure = await getPostFolderStructure();
   const postPaths = getAllPostPaths()!;
-  const posts = postPaths!.reduce((acc, postPath) => {
+  const posts = postPaths!.reduce(async (acc, postPath) => {
     const formatPath = postPath.join("/");
     const postData = await getPostData(formatPath);
     return (acc = {
