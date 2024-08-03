@@ -22,6 +22,7 @@ export default function Home() {
   const dispatch = useAppDispatch();
   const { photos,isLoading } = useAppSelector(state => state.photosSlice)
   useEffect(() => {
+    console.log("*****************",__dirname, process.cwd());
     if (photos.length === 0) {
       dispatch(fetchPhotos());
     }
@@ -31,5 +32,11 @@ export default function Home() {
   //   console.log("photos", photos);
   // // eslint-disable-next-line react-hooks/exhaustive-deps
   // },[isLoading])
-  return <div>{process.env.NEXT_PUBLIC_BACKEND_PROXY}</div>;
+  return (
+    <div>
+      <p>{process.env.NEXT_PUBLIC_BACKEND_PROXY}</p>
+      <p>{process.cwd()}</p>
+      <p>{__dirname}</p>
+    </div>
+  );
 }
