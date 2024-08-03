@@ -31,7 +31,7 @@ import { NextResponse } from "next/server";
 export interface IMainSideBarData {
   [dirName: string]: string[];
 }
-export const GET = async () => {
+export default async function GET() {
   try {
     const postFolderStructure = await getPostFolderStructure();
     const postPaths = await getAllPostPaths()!;
