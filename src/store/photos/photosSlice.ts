@@ -42,10 +42,13 @@ export const fetchPhotos = createAsyncThunk(
   "photos/fetchPhotos",
   async (_, thunkAPI) => {
     try {
-      const res = await fetch(`${process.env.NEXT_PUBLIC_BACKEND_PROXY}api`, {
-        method: "GET",
-        cache: "no-store",
-      });
+      const res = await fetch(
+        `.next/api`,
+        {
+          method: "GET",
+          cache: "no-store",
+        }
+      );
       if (!res) {
         throw new Error("error response is empty");
       }
