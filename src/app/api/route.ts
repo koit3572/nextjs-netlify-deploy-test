@@ -98,6 +98,6 @@ export default async function GET() {
   // }
 };
 
-export const config = {
-  type:"experimental-background"
-}
+// export const config = {
+//   type:"experimental-background"
+// }
