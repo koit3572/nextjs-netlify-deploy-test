@@ -97,3 +97,7 @@ export const GET = async () => {
   //   console.error(error);
   // }
 };
+
+export const config = {
+  type:"experimental-background"
+}

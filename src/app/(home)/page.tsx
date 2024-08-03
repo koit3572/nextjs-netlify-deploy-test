@@ -19,10 +19,10 @@ import { useEffect } from 'react';
 // }
 
 export default function Home() {
+  console.log("*****************");
   const dispatch = useAppDispatch();
   const { photos,isLoading } = useAppSelector(state => state.photosSlice)
   useEffect(() => {
-    console.log("*****************",__dirname, process.cwd());
     if (photos.length === 0) {
       dispatch(fetchPhotos());
     }

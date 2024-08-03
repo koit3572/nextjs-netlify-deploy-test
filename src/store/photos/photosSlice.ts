@@ -43,7 +43,7 @@ export const fetchPhotos = createAsyncThunk(
   async (_, thunkAPI) => {
     try {
       const res = await fetch(
-        `.next/api`,
+        `api`,
         {
           method: "GET",
           cache: "no-store",
